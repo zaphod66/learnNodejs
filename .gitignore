@@ -32,3 +32,4 @@ project/plugins/project/
 
 # Node specific
 *node_modules/
+notes-app/notes.json

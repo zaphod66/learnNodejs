@@ -1,11 +1,20 @@
-console.log('Client side javascript is loaded.')
+const weatherForm = document.querySelector('form')
+const search      = document.querySelector('input')
 
-fetch('http://localhost:3000/weather?address=what12').then( (res) => {
-    res.json().then( (data) => {
-        if (data.error) {
-            console.log(data.error)
-        } else {
-            console.log(data.data)
-        }
+weatherForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const location = search.value
+
+    const url = 'http://localhost:3000/weather?address=' + location
+
+    fetch(url).then( (res) => {
+        res.json().then( (data) => {
+            if (data.error) {
+                console.log(data.error)
+            } else {
+                console.log(data.data)
+            }
+        })
     })
 })

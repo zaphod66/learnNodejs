@@ -39,11 +39,13 @@ const transaction1 = (type, myProd) => {
     console.log(type, label, stock)
 }
 
-const transaction2 = (type, { stock, label }) => {
+const transaction2 = (type, { stock = 0, label = 'no label'} = {} ) => {
     console.log(type, label, stock)
 }
 
 transaction1('Order1', product)
 
 transaction2('Order2', product)
+
+transaction2('Order2')
 

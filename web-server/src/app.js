@@ -50,20 +50,20 @@ app.get('/weather', (req, res) => {
 
     const address = req.query.address
 
-    geocode(address, (err, { name, lat, lon }) => {
-        if (err) {
-            return res.send({ err })
+    geocode(address, (error, { name, lat, lon } = {} ) => {
+        if (error) {
+            return res.send({ error })
         }
         
-        weather(lat, lon, (err, data) => {
-            if (err) {
-                return res.send({ err })
+        weather(lat, lon, (error, data) => {
+            if (error) {
+                return res.send({ error })
             }
             
             res.send({
-                data: data,
+                data,
                 addr: address,
-                name: name
+                name
             })
         })
         

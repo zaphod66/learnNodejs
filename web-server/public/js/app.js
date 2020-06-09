@@ -18,8 +18,8 @@ weatherForm.addEventListener('submit', (event) => {
             if (data.error) {
                 msg1.textContent = data.error
             } else {
-                const text1 = 'Weather for ' + data.data.name + ' is ' + data.data.desc
-                const text2 = 'Temperature is ' + data.data.temp + '°C and feels like ' + data.data.feelslike + '°C'
+                const text1 = 'Weather for ' + data.data.name + ' is ' + data.data.desc + '.'
+                const text2 = 'Temperature is ' + data.data.temp + '°C and feels like ' + data.data.feelslike + '°C.'
 
                 msg1.textContent = text1
                 msg2.textContent = text2

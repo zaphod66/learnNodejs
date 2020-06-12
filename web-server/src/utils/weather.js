@@ -14,8 +14,18 @@ const weather = (lat, lon, cb) => {
             const name      = body.location.name
             const temp      = body.current.temperature
             const feelslike = body.current.feelslike
+<<<<<<< HEAD
 
             const data = { name, desc, temp, feelslike }
+=======
+            const humidity  = body.current.humidity
+            const windSpd   = body.current.wind_speed
+            const windDir   = body.current.wind_dir
+            const windDeg   = body.current.wind_degree
+            const icons     = body.current.weather_icons
+
+            const data = { name, desc, temp, feelslike, humidity, windSpd, windDir, windDeg, icons }
+>>>>>>> webServer
 
             cb(undefined, data)
         }

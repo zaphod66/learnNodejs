@@ -19,10 +19,26 @@
 //     console.log(data)
 // })
 
-const add = (x, y, cb) => {
+// const add = (x, y, cb) => {
+//     setTimeout(() => {
+//         cb(x + y)
+//     }, 2000)
+// }
+
+// add(1, 4, (sum) => { console.log(sum) })
+
+const doWorkCallback = (cb) => {
     setTimeout(() => {
-        cb(x + y)
+        // cb('Boom!', undefined)
+        cb(undefined, [1, 4, 7])
     }, 2000)
+
 }
 
-add(1, 4, (sum) => { console.log(sum) })
+doWorkCallback( (err, res) => {
+    if (err) {
+        return console.log(err)
+    }
+
+    console.log(res)
+})

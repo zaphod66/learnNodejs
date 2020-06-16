@@ -31,7 +31,7 @@ const doWorkCallback = (cb) => {
     setTimeout(() => {
         // cb('Boom!', undefined)
         cb(undefined, [1, 4, 7])
-    }, 2000)
+    }, 500)
 
 }
 

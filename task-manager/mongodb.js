@@ -24,26 +24,60 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: 
     const userColl  = db.collection(userCollName)
     const tasksColl = db.collection(tasksCollName)
 
-    userColl.findOne( { name: 'Mona' }, (err, doc) => {
-        if (err) {
-            return console.log(err)
+    userColl.updateOne({
+        _id: new ObjectID("5ee3acea105a9ba4a79b62c7")
+    }, {
+        $set: {
+            name: 'Lara'
+        },
+        $inc: {
+            age: 1
         }
-
-        if (doc) {
-            console.log(doc)
-            console.log(doc._id.getTimestamp())
-        } else {
-            console.log('Nothing found!')
-        }
+    }).then( (result) => {
+        console.log('res: ' + result)
+    }).catch( (error) => {
+        console.log('err: ' + error)
     })
 
-    userColl.find( { name: 'Lina'} ).toArray( (err, docs) => {
-        console.log(docs)
+    // tasksColl.updateMany({}, {
+    //     $set: {
+    //         completed: true
+    //     }
+    // }).then( (result) => {
+    //     console.log('modified: ' + result.modifiedCount)
+    // }).catch( (err) => {
+    //     console.log('err: ' + err)
+    // })
+
+    userColl.deleteMany( {
+        age: 54
+    }).then( (result) => {
+        console.log('del: ' + result)
+    }).catch( (error) => {
+        console.log('err: ' + error)
     })
 
-    userColl.find( { name: 'Lina'} ).count( (err, count) => {
-        console.log(count)
-    })
+    // userColl.findOne( { name: 'Mona' }, (err, doc) => {
+    //     if (err) {
+    //         return console.log(err)
+    //     }
+
+    //     if (doc) {
+    //         console.log(doc)
+    //         console.log(doc._id.getTimestamp())
+    //     } else {
+    //         console.log('Nothing found!')
+    //     }
+    // })
+
+    // userColl.find( { name: 'Lina'} ).toArray( (err, docs) => {
+    //     console.log(docs)
+    // })
+
+    // userColl.find( { name: 'Lina'} ).count( (err, count) => {
+    //     console.log(count)
+    // })
+
 
     // userColl.insertOne({
     //     name: 'Norbert Scheller',
@@ -85,4 +119,6 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: 
 
     //     console.log(res.ops)
     // })
+
+
 })

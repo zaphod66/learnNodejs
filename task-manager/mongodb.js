@@ -1,9 +1,6 @@
 // CRUD
 
 const mongodb = require('mongodb')
-// const MongoClient = mongodb.MongoClient
-// const ObjectID = mongodb.ObjectID
-
 const { MongoClient, ObjectID } = require('mongodb')
 
 const id = new ObjectID()

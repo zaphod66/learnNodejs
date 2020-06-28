@@ -44,6 +44,31 @@ app.get('/users/:id', async (req, res) => {
     }
 })
 
+app.patch('/users/:id', async (req, res) => {
+    const _id = req.params.id
+    const upd = req.body
+
+    const updates = Object.keys(upd)
+    const allowedUpdates = ['name', 'email', 'password', 'age']
+    const isValid = updates.every( (update) => allowedUpdates.includes(update))
+
+    if (!isValid) {
+        return res.status(400).send({ error: 'Invalid Operation'})
+    }
+
+    try {
+        const user = await User.findByIdAndUpdate(_id, upd, { new: true, runValidators: true })
+
+        if (!user) {
+            return req.status(404).send()
+        }
+
+        res.send(user)
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
 app.post('/tasks', async (req, res) => {
     const task = new Task(req.body)
 
@@ -76,6 +101,31 @@ app.get('/tasks/:id', async (req, res) => {
         res.send(task)
     } catch (e) {
         res.status(500).send()
+    }
+})
+
+app.patch('/tasks/:id', async (req, res) => {
+    const _id = req.params.id
+    const upd = req.body
+
+    const updates = Object.keys(upd)
+    const allowedUpdates = ['description', 'completed']
+    const isValid = updates.every( (update) => allowedUpdates.includes(update))
+
+    if (!isValid) {
+        return res.status(400).send({ error: 'Invalid Operation'})
+    }
+
+    try {
+        const task = await Task.findByIdAndUpdate(_id, upd, { new: true, runValidators: true })
+
+        if (!task) {
+            return req.status(404).send()
+        }
+
+        res.send(task)
+    } catch (e) {
+        res.status(400).send(e)
     }
 })
 

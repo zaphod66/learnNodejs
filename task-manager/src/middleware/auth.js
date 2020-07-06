@@ -11,7 +11,7 @@ const auth = async (req, res, next) => {
             throw new Error()
         }
 
-        req.user = user
+        req.user = user // store user within req, so route handlers have access to it, w/o fetching it from the database
         next()
     } catch (e) {
         res.status(401).send({ error: 'Please authenticate.'})
